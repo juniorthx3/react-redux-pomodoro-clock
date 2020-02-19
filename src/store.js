@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {logger} from 'redux-logger'
 
-//https://codesandbox.io/s/new-wr8ok
+
 //ACTION TYPES
 const INCREMENT='INCREMENT';
 const DECREMENT='DECREMENT';
@@ -25,8 +25,8 @@ export const start_stop=()=>{
 export const reset=()=>{
     return {type:RESET}
 }
-export const countDownTimer=()=>{
-    return {type:COUNTDOWN_TIMER}
+export const countDownTimer=controller=>{
+    return {type:COUNTDOWN_TIMER, payload: controller}
 }
 export const stopTimer=()=>{
     return {type: STOP_TIMER}
@@ -89,42 +89,20 @@ export const reducer=(state=initialState, action)=>{
                                   timePause: !state.timePause}
         case RESET: return {...initialState}
         case COUNTDOWN_TIMER: 
-        {
-            if(state.isSession){
-                if(state.second > 0){
-                    return {...state, second: state.second - 1, timerON:true, timePause:false}
-                }
-                else if(state.second === 0 && state.minute > 0){
-                    return {...state, 
-                            minute: state.minute - 1,
-                            second: 59,
-                            timerON: true
-                          } 
-                }
-            }
-            else{
-                return {...state, 
-                    isSession:false,
-                    minute: state.breakLength - 1,
-                    second: 59,
-                    timerON: true
-                  } 
-            }
-        }
-        //   if(state.second > 0){
-        //       return {...state, second: state.second - 1, timerON:true, timePause:false}
-        //   }
-        //   else if(state.second === 0 && state.minute > 0){
-        //       return {...state, 
-        //               minute: state.minute - 1,
-        //               second: 59,
-        //               timerON: true
-        //              }
-        //   }else{ 
-        //      return {...state, stopInterval: false, isSession:false, timerON:true, 
-        //                        minute: state.breakLength > 0 && state.second === 0 ? state.breakLength - 1 : state.breakLength, 
-        //                        second: state.second === 0 ? 59 : state.second > 0 ? state.second - 1 : state.second}
-        //   }
+          if(state.second > 0){
+              return {...state, second: state.second - 1, timerON:true, timePause:false}
+          }
+          else if(state.second === 0 && state.minute > 0){
+              return {...state, 
+                      minute: state.minute - 1,
+                      second: 59,
+                      timerON: true
+                     }
+          }else{ 
+             return {...state, stopInterval: false, isSession:false, timerON:true, 
+                               minute: state.breakLength > 0 && state.second === 0 ? state.breakLength - 1 : state.breakLength, 
+                               second: state.second === 0 ? 59 : state.second > 0 ? state.second - 1 : state.second}
+          }
           case STOP_TIMER: return {...state, stopInterval: true, timerON:false, timePause: true}
          default: return state
     }
