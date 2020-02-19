@@ -1,0 +1,90 @@
+body{
+    background-color:#cceeff;
+    font-size:17px;
+    margin:0;
+    padding:0;
+  }
+  .container{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    height: 100vh;
+    width:100%;
+  }
+  .clock-container{
+    width:510px;
+    padding:7px;
+    background-color:orange;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border-radius:100px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); 
+  }
+  h1{
+    font-family: 'Kaushan Script', cursive;
+    line-height:20px;
+    font-size:50px;
+    text-shadow: 1px 1px 1px #000, 1px 3px 3px rgb(177, 64, 64);
+  }
+  
+  button{
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    border-radius:50px;
+    text-align:center;
+    font-size:1.6em;
+    box-shadow: 0px 3px 9px rgba(0,0,0,.2);
+    margin:0 15px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+  .component-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0 30px;
+  }
+  .all-component-content{
+    display:flex;
+  }
+  .button-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Viga', sans-serif;
+  }
+  h2{
+    font-family: 'Great Vibes', cursive; 
+    text-align:center;
+    line-height:2px;
+    font-size:30px;
+    text-shadow: 1px 1px 1px #000;
+  }
+  .timer-component{
+    border:2px solid gray;
+    border-radius:50px;
+    width:200px;
+  }
+  .timer-style{
+     font-family: 'Viga', sans-serif;
+     font-size:40px;
+     text-align:center;
+  }
+  .timer{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    height: 160px;
+    width:200px;
+    line-height: normal;
+    border: 5px solid hsl(0, 0%, 40%);
+    border-radius: 15%;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+    background-color: #cceeff;
+  }
+  
+  p{
+    font-size:19px;
+  }
