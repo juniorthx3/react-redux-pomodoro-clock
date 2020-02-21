@@ -49,7 +49,6 @@ export const startTimer=()=>{
         else{
             dispatch({type: SWITCH_BREAK})
         }
-        // dispatch({type: COUNTDOWN_TIMER})
 }, 1000);
     }
 }
@@ -110,7 +109,6 @@ export const reducer=(state=initialState, action)=>{
         }else{ 
              return {...state, isSession:true, minute: state.sessionLength}
         }
-          //return {...state, isSession:false, isRunning:true, minute: state.breakLength}
           case SWITCH_SESSION: 
           if(state.second > 0){
             return {...state, second: state.second - 1}
@@ -121,8 +119,6 @@ export const reducer=(state=initialState, action)=>{
              return {...state, isSession:false, minute: state.breakLength}
         }
           
-          
-          //return {...state, isSession:true, isRunning:true, minute: state.sessionLength}
          default: return state
     }
 }
