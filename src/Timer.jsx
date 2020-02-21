@@ -14,7 +14,7 @@ const Timer= props => {
       </div>
       <div>
         <button id="start_stop" onClick={()=>props.handleClick()}>
-        {props.timerON === false 
+        {props.isRunning === false 
         ? <i className="fa fa-play" aria-hidden="true"></i>
         : <i className="fa fa-stop-circle-o"></i>}
         </button>
