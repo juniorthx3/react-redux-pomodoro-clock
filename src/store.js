@@ -62,7 +62,6 @@ const initialState={
     second: 0,
     isSession:true,
     isRunning:false,
-    audio: 'https://freesound.org/data/previews/153/153213_2499466-lq.mp3'
 }
 
 //REDUCER
