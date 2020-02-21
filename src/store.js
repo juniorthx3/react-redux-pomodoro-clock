@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {logger} from 'redux-logger'
 
-
 //ACTION TYPES
 const INCREMENT='INCREMENT';
 const DECREMENT='DECREMENT';
@@ -11,13 +10,15 @@ const START_STOP='START_STOP';
 const RESET='RESET';
 const COUNTDOWN_TIMER='COUNTDOWN_TIMER';
 const STOP_TIMER='STOP_TIMER';
+const SWITCH_BREAK='SWITCH_BREAK';
+const SWITCH_SESSION='SWITCH_SESSION';
 
 //ACTION CREATOR
 export const increment=controller=>{
     return {type:INCREMENT, payload: controller}
 }
 export const decrement=controller=>{
-    return {type:DECREMENT, payload:controller}
+    return {type:DECREMENT, payload: controller}
 }
 export const start_stop=()=>{
     return {type:START_STOP}
@@ -25,23 +26,30 @@ export const start_stop=()=>{
 export const reset=()=>{
     return {type:RESET}
 }
-export const countDownTimer=controller=>{
-    return {type:COUNTDOWN_TIMER, payload: controller}
+export const switchBreak=()=>{
+    return {type: SWITCH_BREAK}
 }
-export const stopTimer=()=>{
-    return {type: STOP_TIMER}
+export const switchSession=()=>{
+    return {type: SWITCH_SESSION}
 }
 
+
 export const startTimer=()=>{
-    return (dispatch, getState)=>{
+    return function (dispatch, getState){
        dispatch({type: START_STOP}) 
 
        let interval=setInterval(()=>{
-        if(getState().stopInterval){
+        if(!getState().isRunning){
           clearInterval(interval)
           return dispatch({type: STOP_TIMER})
         }
-        return dispatch(countDownTimer())    
+        if(getState().isSession){
+            dispatch({type: SWITCH_SESSION})
+        }
+        else{
+            dispatch({type: SWITCH_BREAK})
+        }
+        // dispatch({type: COUNTDOWN_TIMER})
 }, 1000);
     }
 }
@@ -53,9 +61,8 @@ const initialState={
     minute:25,
     second: 0,
     isSession:true,
-    stopInterval:true,
-    timerON:false,
-    timePause:true
+    isRunning:false,
+    audio: 'https://freesound.org/data/previews/153/153213_2499466-lq.mp3'
 }
 
 //REDUCER
@@ -83,27 +90,40 @@ export const reducer=(state=initialState, action)=>{
             return {...state, breakLength : state.breakLength > 1 
                               ? state.breakLength - 1 : state.breakLength}
         }
-        case START_STOP: return {...state, 
-                                  timerON: !state.timerON,
-                                  stopInterval:!state.stopInterval,
-                                  timePause: !state.timePause}
+        case START_STOP: return {...state, isRunning: !state.isRunning}
         case RESET: return {...initialState}
         case COUNTDOWN_TIMER: 
           if(state.second > 0){
-              return {...state, second: state.second - 1, timerON:true, timePause:false}
+              return {...state, second: state.second - 1}
           }
           else if(state.second === 0 && state.minute > 0){
-              return {...state, 
-                      minute: state.minute - 1,
-                      second: 59,
-                      timerON: true
-                     }
+              return {...state, minute: state.minute - 1, second: 59}
           }else{ 
-             return {...state, stopInterval: false, isSession:false, timerON:true, 
-                               minute: state.breakLength > 0 && state.second === 0 ? state.breakLength - 1 : state.breakLength, 
-                               second: state.second === 0 ? 59 : state.second > 0 ? state.second - 1 : state.second}
+               return {...state, isSession:false}
           }
-          case STOP_TIMER: return {...state, stopInterval: true, timerON:false, timePause: true}
+          case STOP_TIMER: return {...state, isRunning:false}
+          case SWITCH_BREAK: 
+          if(state.second > 0){
+            return {...state, second: state.second - 1}
+        }
+        else if(state.second === 0 && state.minute > 0){
+            return {...state, minute: state.minute - 1, second: 59}
+        }else{ 
+             return {...state, isSession:true, minute: state.sessionLength}
+        }
+          //return {...state, isSession:false, isRunning:true, minute: state.breakLength}
+          case SWITCH_SESSION: 
+          if(state.second > 0){
+            return {...state, second: state.second - 1}
+        }
+        else if(state.second === 0 && state.minute > 0){
+            return {...state, minute: state.minute - 1, second: 59}
+        }else{ 
+             return {...state, isSession:false, minute: state.breakLength}
+        }
+          
+          
+          //return {...state, isSession:true, isRunning:true, minute: state.sessionLength}
          default: return state
     }
 }
