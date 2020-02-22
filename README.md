@@ -3,9 +3,9 @@
 ### Technology Stack used: ReactJS & Redux 
 
 
-I made this Pomodoro Clock Project of FreeCodeCamp using both React and Redux.
+This React Redux Pomodoro Clock FreeCodeCamp Project was created using both React and Redux.
 
-Visit the deployed project here: https://juniorthx3.github.io/react-redux-pomodoro-clock-deployed/
+It has been deployed using this link, click to visit: https://juniorthx3.github.io/react-redux-pomodoro-clock-deployed/
 
 ![Project pic](src/project-image.PNG)
 
