@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import './style.css'
 import TimerController from './TimerController';
 import {useSelector, useDispatch} from 'react-redux'
@@ -15,10 +15,18 @@ function Container() {
     let isPaused=useSelector(state=>state.isPaused)
     const dispatch=useDispatch();
     const audio=document.getElementById('beep')
-    if(minute === 0 && second === 0){
-         audio.play();   
-    }
+    const audioRef=useRef(null)
+    useEffect(()=>{
+      if(minute === 0 && second === 0){
+        audio.play();
+      }
+    })
 
+    const resetTimer=()=>{
+      dispatch(reset())
+      audio.currentTime = 0;
+      audio.pause();
+    }   
     return(
         <div className="container">
         <div className="clock-container">
@@ -42,9 +50,9 @@ function Container() {
                   isRunning={isRunning}
                   isPaused={isPaused}
                   handleClick={()=>dispatch(startTimer())}
-                  reset={()=>dispatch(reset())}
+                  reset={()=>resetTimer()}
            />
-          <audio id="beep" src="https://freesound.org/data/previews/153/153213_2499466-lq.mp3"></audio>
+          <audio id="beep" src="https://freesound.org/data/previews/153/153213_2499466-lq.mp3" ref={audioRef}></audio>
           
           </div>
           <br />

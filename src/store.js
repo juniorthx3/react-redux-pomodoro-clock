@@ -8,7 +8,6 @@ const INCREMENT='INCREMENT';
 const DECREMENT='DECREMENT';
 const START_STOP='START_STOP';
 const RESET='RESET';
-const COUNTDOWN_TIMER='COUNTDOWN_TIMER';
 const STOP_TIMER='STOP_TIMER';
 const SWITCH_BREAK='SWITCH_BREAK';
 const SWITCH_SESSION='SWITCH_SESSION';
@@ -32,7 +31,6 @@ export const switchBreak=()=>{
 export const switchSession=()=>{
     return {type: SWITCH_SESSION}
 }
-
 
 export const startTimer=()=>{
     return function (dispatch, getState){
@@ -58,7 +56,7 @@ const initialState={
     breakLength:5,
     sessionLength:25,
     minute:25,
-    second: 0,
+    second: 0, 
     isSession:true,
     isRunning:false,
 }
@@ -90,17 +88,8 @@ export const reducer=(state=initialState, action)=>{
         }
         case START_STOP: return {...state, isRunning: !state.isRunning}
         case RESET: return {...initialState}
-        case COUNTDOWN_TIMER: 
-          if(state.second > 0){
-              return {...state, second: state.second - 1}
-          }
-          else if(state.second === 0 && state.minute > 0){
-              return {...state, minute: state.minute - 1, second: 59}
-          }else{ 
-               return {...state, isSession:false}
-          }
-          case STOP_TIMER: return {...state, isRunning:false}
-          case SWITCH_BREAK: 
+        case STOP_TIMER: return {...state, isRunning:false}
+        case SWITCH_BREAK: 
           if(state.second > 0){
             return {...state, second: state.second - 1}
         }
