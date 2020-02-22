@@ -1,0 +1,8 @@
+//ACTION TYPES
+export const INCREMENT='INCREMENT';
+export const DECREMENT='DECREMENT';
+export const START_STOP='START_STOP';
+export const RESET='RESET';
+export const STOP_TIMER='STOP_TIMER';
+export const SWITCH_BREAK='SWITCH_BREAK';
+export const SWITCH_SESSION='SWITCH_SESSION';

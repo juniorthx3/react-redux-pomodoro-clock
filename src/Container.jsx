@@ -2,9 +2,10 @@ import React, {useRef, useEffect} from 'react';
 import './style.css'
 import TimerController from './TimerController';
 import {useSelector, useDispatch} from 'react-redux'
-import { increment, decrement, reset, startTimer} from './store';
+import { increment, decrement, reset, startTimer} from './redux/actionCreators';
 import Timer from './Timer';
 import "font-awesome/css/font-awesome.min.css";
+
 
 function Container() {
     const breakLength=useSelector(state=>state.breakLength)

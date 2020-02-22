@@ -1,55 +1,6 @@
-import {createStore, applyMiddleware}from 'redux'
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import {logger} from 'redux-logger'
+import {INCREMENT, DECREMENT, START_STOP, RESET, STOP_TIMER, SWITCH_BREAK, SWITCH_SESSION} from './actionTypes';
 
-//ACTION TYPES
-const INCREMENT='INCREMENT';
-const DECREMENT='DECREMENT';
-const START_STOP='START_STOP';
-const RESET='RESET';
-const STOP_TIMER='STOP_TIMER';
-const SWITCH_BREAK='SWITCH_BREAK';
-const SWITCH_SESSION='SWITCH_SESSION';
 
-//ACTION CREATOR
-export const increment=controller=>{
-    return {type:INCREMENT, payload: controller}
-}
-export const decrement=controller=>{
-    return {type:DECREMENT, payload: controller}
-}
-export const start_stop=()=>{
-    return {type:START_STOP}
-}
-export const reset=()=>{
-    return {type:RESET}
-}
-export const switchBreak=()=>{
-    return {type: SWITCH_BREAK}
-}
-export const switchSession=()=>{
-    return {type: SWITCH_SESSION}
-}
-
-export const startTimer=()=>{
-    return function (dispatch, getState){
-       dispatch({type: START_STOP}) 
-
-       let interval=setInterval(()=>{
-        if(!getState().isRunning){
-          clearInterval(interval)
-          return dispatch({type: STOP_TIMER})
-        }
-        if(getState().isSession){
-            dispatch({type: SWITCH_SESSION})
-        }
-        else{
-            dispatch({type: SWITCH_BREAK})
-        }
-}, 1000);
-    }
-}
 
 //INITIAL STATE
 const initialState={
@@ -62,7 +13,7 @@ const initialState={
 }
 
 //REDUCER
-export const reducer=(state=initialState, action)=>{ 
+const reducer=(state=initialState, action)=>{ 
     switch(action.type){
         case INCREMENT:
             if(action.payload === "session"){
@@ -112,7 +63,4 @@ export const reducer=(state=initialState, action)=>{
     }
 }
 
-const store=createStore(reducer, composeWithDevTools(applyMiddleware(logger, thunk)));
-store.subscribe(()=>console.log(store.getState()))
-
-export default store;
+export default reducer;
