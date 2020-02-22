@@ -7,6 +7,5 @@ I made this Pomodoro Clock Project of FreeCodeCamp using both React and Redux.
 
 Visit the deployed project here: https://juniorthx3.github.io/react-redux-pomodoro-clock-deployed/
 
-I'm still working on it to make some changes. Have a look if you wish too. Thanks!
 
 
