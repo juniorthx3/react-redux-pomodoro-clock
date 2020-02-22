@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './style.css'
 import TimerController from './TimerController';
 import {useSelector, useDispatch} from 'react-redux'
@@ -15,9 +15,10 @@ function Container() {
     let isSession=useSelector(state=>state.isSession)
     let isRunning=useSelector(state=>state.isRunning)
     let isPaused=useSelector(state=>state.isPaused)
+    let isPlay=useSelector(state=>state.isPlay)
     const dispatch=useDispatch();
-    const audio=document.getElementById('beep')
-    const audioRef=useRef(null)
+    let audio=document.getElementById('beep')
+    
     useEffect(()=>{
       if(minute === 0 && second === 0){
         audio.play();
@@ -26,8 +27,8 @@ function Container() {
 
     const resetTimer=()=>{
       dispatch(reset())
-      audio.currentTime = 0;
       audio.pause();
+      audio.currentTime = 0;
     }   
     return(
         <div className="container">
@@ -38,11 +39,13 @@ function Container() {
                              value={breakLength}
                              decrement={()=>dispatch(decrement('break'))}
                              increment={()=>dispatch(increment('break'))}
+                             isPlay={isPlay}
             />
             <TimerController type='session'
                              value={sessionLength} 
                              decrement={()=>dispatch(decrement('session'))}
                              increment={()=>dispatch(increment('session'))}
+                             isPlay={isPlay}
             />
           </div><br />
           <div>
@@ -53,8 +56,12 @@ function Container() {
                   isPaused={isPaused}
                   handleClick={()=>dispatch(startTimer())}
                   reset={()=>resetTimer()}
+                  isPlay={isPlay}
            />
-          <audio id="beep" src="https://freesound.org/data/previews/153/153213_2499466-lq.mp3" ref={audioRef}></audio>
+          <audio id="beep" 
+                 src="https://freesound.org/data/previews/153/153213_2499466-lq.mp3" 
+                 ref={element=>audio = element}>
+          </audio>
           
           </div>
           <br />
