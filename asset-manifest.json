@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/react-redux-pomodoro-clock/static/css/main.06dc1829.chunk.css",
+    "main.js": "/react-redux-pomodoro-clock/static/js/main.32c1fe2a.chunk.js",
+    "main.js.map": "/react-redux-pomodoro-clock/static/js/main.32c1fe2a.chunk.js.map",
+    "runtime-main.js": "/react-redux-pomodoro-clock/static/js/runtime-main.e615ee90.js",
+    "runtime-main.js.map": "/react-redux-pomodoro-clock/static/js/runtime-main.e615ee90.js.map",
+    "static/css/2.b7c8eedf.chunk.css": "/react-redux-pomodoro-clock/static/css/2.b7c8eedf.chunk.css",
+    "static/js/2.86c241a3.chunk.js": "/react-redux-pomodoro-clock/static/js/2.86c241a3.chunk.js",
+    "static/js/2.86c241a3.chunk.js.map": "/react-redux-pomodoro-clock/static/js/2.86c241a3.chunk.js.map",
+    "index.html": "/react-redux-pomodoro-clock/index.html",
+    "precache-manifest.fac1334b79bda1082586c591d0b3b7bc.js": "/react-redux-pomodoro-clock/precache-manifest.fac1334b79bda1082586c591d0b3b7bc.js",
+    "service-worker.js": "/react-redux-pomodoro-clock/service-worker.js",
+    "static/css/2.b7c8eedf.chunk.css.map": "/react-redux-pomodoro-clock/static/css/2.b7c8eedf.chunk.css.map",
+    "static/css/main.06dc1829.chunk.css.map": "/react-redux-pomodoro-clock/static/css/main.06dc1829.chunk.css.map",
+    "static/js/2.86c241a3.chunk.js.LICENSE": "/react-redux-pomodoro-clock/static/js/2.86c241a3.chunk.js.LICENSE",
+    "static/media/font-awesome.min.css": "/react-redux-pomodoro-clock/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e615ee90.js",
+    "static/css/2.b7c8eedf.chunk.css",
+    "static/js/2.86c241a3.chunk.js",
+    "static/css/main.06dc1829.chunk.css",
+    "static/js/main.32c1fe2a.chunk.js"
+  ]
+}
