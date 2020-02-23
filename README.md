@@ -1,4 +1,4 @@
-# FreeCodeCamp Pomodoro Clock 
+# FreeCodeCamp Pomodoro Clock Project
 ## A countdown timer that alternates between SESSION and BREAK periods.
 ### Technology Stack used: ReactJS & Redux 
 
